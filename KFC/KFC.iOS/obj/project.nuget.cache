@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "2yjoDYDdFgu/AfOj7x914H6Xlu9bgHi0cS9kjfw+bBnXsyMdKckFhljSUFLgpu5WqfNW/vbEsvIE2D0Lmh4Zww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\egome\\Documents\\GitRepos\\Kfc\\KFC\\KFC.iOS\\KFC.iOS.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\egome\\.nuget\\packages\\acr.userdialogs\\7.1.0.452\\acr.userdialogs.7.1.0.452.nupkg.sha512",
+    "C:\\Users\\egome\\.nuget\\packages\\btprogresshud\\1.3.1\\btprogresshud.1.3.1.nupkg.sha512",
+    "C:\\Users\\egome\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
+    "C:\\Users\\egome\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Users\\egome\\.nuget\\packages\\xamarin.forms\\4.8.0.1364\\xamarin.forms.4.8.0.1364.nupkg.sha512"
+  ],
+  "logs": []
+}
