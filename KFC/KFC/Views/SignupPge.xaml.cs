@@ -24,7 +24,7 @@ namespace KFC.Views {
 
                     if (response) {
                         await DisplayAlert($"Welcome {EntName.Text}", "Your account has been created", "Alright");
-                        await Navigation.PushModalAsync(new LoginPage());
+                        await Navigation.PushModalAsync(new LoginPage(EntEmail.Text, EntPassword.Text));
                     } else {
                         await DisplayAlert("Oops", "Something went wrong", "Cancel");
                     }
@@ -39,7 +39,7 @@ namespace KFC.Views {
 
         private async void BtnLogin_Clicked(object sender, EventArgs e) {
 
-            await Navigation.PushModalAsync(new LoginPage());
+            await Navigation.PushModalAsync(new LoginPage(string.Empty, string.Empty));
         }
     }
 }

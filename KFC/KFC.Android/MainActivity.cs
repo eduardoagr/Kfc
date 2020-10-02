@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using Xamarin.Forms;
 
 namespace KFC.Droid {
     [Activity(Label = "KFC", Icon = "@drawable/kfc", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
@@ -15,8 +16,10 @@ namespace KFC.Droid {
 
             base.OnCreate(savedInstanceState);
 
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Forms.Init(this, savedInstanceState);
+            FormsMaterial.Init(this, savedInstanceState);
             UserDialogs.Init(this);
             LoadApplication(new App());
         }

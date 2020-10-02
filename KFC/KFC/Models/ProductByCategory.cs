@@ -8,5 +8,7 @@
         public bool isPopularProduct { get; set; }
         public int categoryId { get; set; }
         public object imageArray { get; set; }
+
+        public string FullimageUrl => $"{AppSettings.APIURL}{imageUrl}";
     }
 }

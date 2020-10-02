@@ -2,13 +2,22 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "Acr.UserDialogs/7.1.0.452": {
+      "Acr.UserDialogs/7.1.0.454": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Acr.UserDialogs.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/Acr.UserDialogs.dll": {}
+        }
+      },
+      "Epoch.Unix.TimeStamp/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/UnixTimeStamp.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/UnixTimeStamp.dll": {}
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {
@@ -65,7 +74,7 @@
           "lib/netstandard2.0/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.8.0.1364": {
+      "Xamarin.Forms/4.8.0.1451": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {},
@@ -81,18 +90,30 @@
           "buildTransitive/Xamarin.Forms.props": {},
           "buildTransitive/Xamarin.Forms.targets": {}
         }
+      },
+      "Xamarin.Forms.Visual.Material/4.8.0.1451": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.Forms": "4.8.0.1451"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
       }
     }
   },
   "libraries": {
-    "Acr.UserDialogs/7.1.0.452": {
-      "sha512": "DeOQp6kWzAtm2Qk1iCg5TsNBu2MsF8565mM6S39Bfc0PWlZqwgCNs+yR4pr9aLnTCPM2uYLpJP3Bfu5jXLmxOQ==",
+    "Acr.UserDialogs/7.1.0.454": {
+      "sha512": "A7NdvgpX1tE5tDj4gNQgrQOZ2xZF2PidNhuy5ydfM5rJdvN9CqjVxjoKEu3rDiMUs7ek/m+EiVkYVC5DVwfI0A==",
       "type": "package",
-      "path": "acr.userdialogs/7.1.0.452",
+      "path": "acr.userdialogs/7.1.0.454",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "acr.userdialogs.7.1.0.452.nupkg.sha512",
+        "acr.userdialogs.7.1.0.454.nupkg.sha512",
         "acr.userdialogs.nuspec",
         "lib/monoandroid10.0/Acr.UserDialogs.dll",
         "lib/monoandroid10.0/Acr.UserDialogs.pdb",
@@ -118,6 +139,18 @@
         "lib/xamarintvos10/Acr.UserDialogs.pdb",
         "lib/xamarintvos10/Acr.UserDialogs.xml",
         "readme.txt"
+      ]
+    },
+    "Epoch.Unix.TimeStamp/2.0.0": {
+      "sha512": "80BatcGiOqJuC2V/L3Zu0mvi+N8C2V6ToxZOcF5iVe5VKx/23UBoSCPFIw2ZmlbZbc3t+2ynsa2P0ajO6Smblw==",
+      "type": "package",
+      "path": "epoch.unix.timestamp/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "epoch.unix.timestamp.2.0.0.nupkg.sha512",
+        "epoch.unix.timestamp.nuspec",
+        "lib/netstandard2.0/UnixTimeStamp.dll"
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
@@ -390,10 +423,10 @@
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/4.8.0.1364": {
-      "sha512": "BZLQDhxXPSu3MbyL4izhGkM2qu0nPaPVEoNZps+cHlgcpA4S5y6f/Kieb6z4S1tyZF1k4a2VPXnyEAFFF78dVA==",
+    "Xamarin.Forms/4.8.0.1451": {
+      "sha512": "3RUzBpcaBxOjufLLqJnuZRGLhzAbVyfe/Pyp0AFY/H1MkCHYxXIRzgB8h6yC9NTs39NLK2SgGiaMbvC4TJ/zFA==",
       "type": "package",
-      "path": "xamarin.forms/4.8.0.1364",
+      "path": "xamarin.forms/4.8.0.1451",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -702,18 +735,44 @@
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0.16299/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.8.0.1364.nupkg.sha512",
+        "xamarin.forms.4.8.0.1451.nupkg.sha512",
         "xamarin.forms.nuspec"
+      ]
+    },
+    "Xamarin.Forms.Visual.Material/4.8.0.1451": {
+      "sha512": "QLei1etT+z8jpYOnkSlt4JiCyjSoXImVEc7sE0X33lYTOScaiECbNk2EyZ5fP7EkiB2IFYvVHRVR1rNnBL+e1g==",
+      "type": "package",
+      "path": "xamarin.forms.visual.material/4.8.0.1451",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Assets/xamarin_128x128.png",
+        "build/MonoAndroid10/Xamarin.Forms.Visual.Material.targets",
+        "buildTransitive/MonoAndroid10/Xamarin.Forms.Visual.Material.targets",
+        "lib/MonoAndroid10.0/Xamarin.Forms.Material.dll",
+        "lib/MonoAndroid10.0/Xamarin.Forms.Material.pdb",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoAndroid90/Xamarin.Forms.Material.dll",
+        "lib/MonoAndroid90/Xamarin.Forms.Material.pdb",
+        "lib/Xamarin.iOS10/Xamarin.Forms.Material.dll",
+        "lib/Xamarin.iOS10/Xamarin.Forms.Material.pdb",
+        "lib/netstandard1.0/_._",
+        "lib/tizen40/Xamarin.Forms.Material.dll",
+        "lib/tizen40/Xamarin.Forms.Material.pdb",
+        "xamarin.forms.visual.material.4.8.0.1451.nupkg.sha512",
+        "xamarin.forms.visual.material.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Acr.UserDialogs >= 7.1.0.452",
+      "Acr.UserDialogs >= 7.1.0.454",
+      "Epoch.Unix.TimeStamp >= 2.0.0",
       "NETStandard.Library >= 2.0.3",
       "Newtonsoft.Json >= 12.0.3",
       "Xamarin.Essentials >= 1.5.3.2",
-      "Xamarin.Forms >= 4.8.0.1364"
+      "Xamarin.Forms >= 4.8.0.1451",
+      "Xamarin.Forms.Visual.Material >= 4.8.0.1451"
     ]
   },
   "packageFolders": {
@@ -760,7 +819,11 @@
         "dependencies": {
           "Acr.UserDialogs": {
             "target": "Package",
-            "version": "[7.1.0.452, )"
+            "version": "[7.1.0.454, )"
+          },
+          "Epoch.Unix.TimeStamp": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -778,7 +841,11 @@
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.8.0.1364, )"
+            "version": "[4.8.0.1451, )"
+          },
+          "Xamarin.Forms.Visual.Material": {
+            "target": "Package",
+            "version": "[4.8.0.1451, )"
           }
         },
         "imports": [
@@ -791,7 +858,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

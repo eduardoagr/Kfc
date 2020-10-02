@@ -8,6 +8,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
+using UnixTimeStamp;
+
 using Xamarin.Essentials;
 
 namespace KFC.Services {
@@ -49,6 +51,8 @@ namespace KFC.Services {
                     Preferences.Set("token", result.access_token);
                     Preferences.Set("userId", result.user_Id);
                     Preferences.Set("userName", result.user_name);
+                    Preferences.Set("TokenExpTime", result.expiration_Time);
+                    Preferences.Set("CurrneTime", UnixTime.GetCurrentTime());
                     return true;
                 } else {
                     return false;
@@ -57,6 +61,7 @@ namespace KFC.Services {
         }
         public static async Task<List<Category>> GetCategories() {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -67,6 +72,7 @@ namespace KFC.Services {
 
         public static async Task<Product> GetProductById(int productID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -77,6 +83,7 @@ namespace KFC.Services {
 
         public static async Task<List<ProductByCategory>> GetProductByCategory(int categoryID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -87,6 +94,7 @@ namespace KFC.Services {
 
         public static async Task<List<PopularProduct>> GetPopularProducts() {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -97,6 +105,7 @@ namespace KFC.Services {
 
         public static async Task<bool> AddItemsToCart(AddToCart addToCart) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 var userJson = JsonConvert.SerializeObject(addToCart);
@@ -113,8 +122,10 @@ namespace KFC.Services {
 
         public static async Task<CartSubTotal> GetCartSubTotal(int userID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
+  
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
                 var response = await httpClient.GetStringAsync($"{AppSettings.APIURL}api/ShoppingCartItems/SubTotal/{userID}");
                 return JsonConvert.DeserializeObject<CartSubTotal>(response);
@@ -123,6 +134,7 @@ namespace KFC.Services {
 
         public static async Task<List<ShppingCartItems>> GetShoppingCartItems(int userID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -133,7 +145,9 @@ namespace KFC.Services {
 
         public static async Task<TotalCartItems> GetTotalCartItems(int userID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
+
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
                 var response = await httpClient.GetStringAsync($"{AppSettings.APIURL}api/ShoppingCartItems/TotalItems/{userID}");
@@ -144,6 +158,7 @@ namespace KFC.Services {
 
         public static async Task<bool> ClearShoppingCart(int userID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -157,6 +172,7 @@ namespace KFC.Services {
 
         public static async Task<OrderResponce> PlceOrder(Order order) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 var userJson = JsonConvert.SerializeObject(order);
@@ -170,6 +186,7 @@ namespace KFC.Services {
 
         public static async Task<List<OrderByUser>> GerOrderByUser(int userID) {
 
+            await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
@@ -178,14 +195,30 @@ namespace KFC.Services {
             }
         }
 
-        public static async Task<Order> GetOrderDettails(Order orderId) {
+        public static async Task<List<Order>> GetOrderDettails(int orderId) {
 
+           await TokenValidator.CheckToken();
             using (HttpClient httpClient = new HttpClient()) {
 
-
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", Preferences.Get("token", string.Empty));
-                var response = await httpClient.GetStringAsync($"{AppSettings.APIURL}api/Orders/OrderDetails/");
-                return JsonConvert.DeserializeObject<Order>(response);
+                var response = await httpClient.GetStringAsync($"{AppSettings.APIURL}api/Orders/OrderDetails/{orderId}");
+                return JsonConvert.DeserializeObject<List<Order>>(response);
+            }
+        }
+    }
+
+    public static class TokenValidator {
+          
+        public static async Task CheckToken() {
+
+            int expTokenTime = Preferences.Get("TokenExpTime", 0);
+            Preferences.Set("CurrneTime", UnixTime.GetCurrentTime());
+            var currentTime = Preferences.Get("CurrneTime", 0);
+            if (expTokenTime < currentTime) {
+
+                string email = Preferences.Get("email", string.Empty);
+                string pass = Preferences.Get("pass", string.Empty);
+                await ApiServices.LoginUser(email, pass);
             }
         }
     }
