@@ -119,5 +119,11 @@ namespace KFC.Views {
 
             Navigation.PushModalAsync(new ContactPage());
         }
+
+        private void TapLogout_Tapped(object sender, EventArgs e) {
+
+            Preferences.Clear();
+            Application.Current.MainPage = new NavigationPage(new SignupPge());
+        }
     }
 }
